@@ -31,99 +31,135 @@ const withImage = (project, imageIndex) => ({
 });
 
 const ruProjects = [
-  withImage({
-    title: "МаниМедиа",
-    category: "Сайт и платформа",
-    text: "Digital-платформа с личным кабинетом и системой аналитики для медиа-проектов.",
-    href: "https://mm-web-wheat.vercel.app",
-    tags: ["#UX/UI", "#Frontend", "#Backend"],
-  }, 0),
-  withImage({
-    title: "Ramka Community",
-    category: "Комьюнити",
-    text: "Платформа для сообщества с аккуратной структурой, событиями и удобной навигацией.",
-    href: "https://ramka-web.vercel.app",
-    tags: ["Community", "Events", "CMS"],
-  }, 1),
-  withImage({
-    title: "Youtube Lab",
-    category: "Медиа-сайт",
-    text: "Сайт для медиа-лаборатории с фокусом на понятную подачу услуг и заявки.",
-    href: "https://youtube-lab-phi.vercel.app",
-    tags: ["Media", "Landing", "Leads"],
-  }, 2),
-  withImage({
-    title: "Latem Homes",
-    category: "Недвижимость",
-    text: "Сайт для мобильных домов с понятной структурой, сильным SEO и коверсирующим дизайном",
-    href: "https://www.latemhomes.nl",
-    tags: ["Build", "Landing", "Leads"],
-  }, 3),
+  withImage(
+    {
+      title: "МаниМедиа",
+      category: "Сайт и платформа",
+      text: "Digital-платформа с личным кабинетом и системой аналитики для медиа-проектов.",
+      href: "https://mm-web-wheat.vercel.app",
+      tags: ["#UX/UI", "#Frontend", "#Backend"],
+    },
+    0,
+  ),
+  withImage(
+    {
+      title: "Ramka Community",
+      category: "Комьюнити",
+      text: "Платформа для сообщества с аккуратной структурой, событиями и удобной навигацией.",
+      href: "https://ramka-web.vercel.app",
+      tags: ["Community", "Events", "CMS"],
+    },
+    1,
+  ),
+  withImage(
+    {
+      title: "Youtube Lab",
+      category: "Медиа-сайт",
+      text: "Сайт для медиа-лаборатории с фокусом на понятную подачу услуг и заявки.",
+      href: "https://youtube-lab-phi.vercel.app",
+      tags: ["Media", "Landing", "Leads"],
+    },
+    2,
+  ),
+  withImage(
+    {
+      title: "Latem Homes",
+      category: "Недвижимость",
+      text: "Сайт для мобильных домов с понятной структурой, сильным SEO и коверсирующим дизайном",
+      href: "https://www.latemhomes.nl",
+      tags: ["Build", "Landing", "Leads"],
+    },
+    3,
+  ),
 ];
 
 const enProjects = [
-  withImage({
-    title: "ManiMedia",
-    category: "Website and platform",
-    text: "A digital platform with a personal dashboard and analytics system for media projects.",
-    href: "https://mm-web-wheat.vercel.app",
-    tags: ["#UX/UI", "#Frontend", "#Backend"],
-  }, 0),
-  withImage({
-    title: "Ramka Community",
-    category: "Community",
-    text: "A structured community platform with events, content management, and clear navigation.",
-    href: "https://ramka-web.vercel.app",
-    tags: ["Community", "Events", "CMS"],
-  }, 1),
-  withImage({
-    title: "Youtube Lab",
-    category: "Media website",
-    text: "A media-lab website focused on clear service presentation and lead generation.",
-    href: "https://youtube-lab-phi.vercel.app",
-    tags: ["Media", "Landing", "Leads"],
-  }, 2),
-  withImage({
-    title: "Latem Homes",
-    category: "Real estate",
-    text: "A website for mobile homes with clear structure, SEO focus, and conversion-driven design.",
-    href: "https://www.latemhomes.nl",
-    tags: ["Build", "Landing", "Leads"],
-  }, 3),
+  withImage(
+    {
+      title: "ManiMedia",
+      category: "Website and platform",
+      text: "A digital platform with a personal dashboard and analytics system for media projects.",
+      href: "https://mm-web-wheat.vercel.app",
+      tags: ["#UX/UI", "#Frontend", "#Backend"],
+    },
+    0,
+  ),
+  withImage(
+    {
+      title: "Ramka Community",
+      category: "Community",
+      text: "A structured community platform with events, content management, and clear navigation.",
+      href: "https://ramka-web.vercel.app",
+      tags: ["Community", "Events", "CMS"],
+    },
+    1,
+  ),
+  withImage(
+    {
+      title: "Youtube Lab",
+      category: "Media website",
+      text: "A media-lab website focused on clear service presentation and lead generation.",
+      href: "https://youtube-lab-phi.vercel.app",
+      tags: ["Media", "Landing", "Leads"],
+    },
+    2,
+  ),
+  withImage(
+    {
+      title: "Latem Homes",
+      category: "Real estate",
+      text: "A website for mobile homes with clear structure, SEO focus, and conversion-driven design.",
+      href: "https://www.latemhomes.nl",
+      tags: ["Build", "Landing", "Leads"],
+    },
+    3,
+  ),
 ];
 
 const ruHiddenProjects = [
-  withImage({
-    title: "Simpli Soft",
-    category: "B2B software",
-    text: "Платформа для автоматизации операционных процессов, клиентских коммуникаций и рабочих модулей для бизнеса.",
-    href: "https://www.simplisoft.app/",
-    tags: ["Software", "Automation", "B2B"],
-  }, 4),
-  withImage({
-    title: "Dima Tech",
-    category: "Портфолио",
-    text: "Портфолио для специалиста в digital и разработке с акцентом на услуги, опыт и понятный контакт.",
-    href: "https://www.dima-tech.com/",
-    tags: ["Portfolio", "Personal", "Web"],
-  }, 5),
+  withImage(
+    {
+      title: "Simpli Soft",
+      category: "B2B software",
+      text: "Платформа для автоматизации операционных процессов, клиентских коммуникаций и рабочих модулей для бизнеса.",
+      href: "https://www.simplisoft.app/",
+      tags: ["Software", "Automation", "B2B"],
+    },
+    4,
+  ),
+  withImage(
+    {
+      title: "Dima Tech",
+      category: "Портфолио",
+      text: "Портфолио для специалиста в digital и разработке с акцентом на услуги, опыт и понятный контакт.",
+      href: "https://www.dima-tech.com/",
+      tags: ["Portfolio", "Personal", "Web"],
+    },
+    5,
+  ),
 ];
 
 const enHiddenProjects = [
-  withImage({
-    title: "Simpli Soft",
-    category: "B2B software",
-    text: "A platform for automating operations, client communication, and business workflow modules.",
-    href: "https://www.simplisoft.app/",
-    tags: ["Software", "Automation", "B2B"],
-  }, 4),
-  withImage({
-    title: "Dima Tech",
-    category: "Portfolio",
-    text: "A personal portfolio for a digital and development specialist, focused on services, experience, and contact.",
-    href: "https://www.dima-tech.com/",
-    tags: ["Portfolio", "Personal", "Web"],
-  }, 5),
+  withImage(
+    {
+      title: "Simpli Soft",
+      category: "B2B software",
+      text: "A platform for automating operations, client communication, and business workflow modules.",
+      href: "https://www.simplisoft.app/",
+      tags: ["Software", "Automation", "B2B"],
+    },
+    4,
+  ),
+  withImage(
+    {
+      title: "Dima Tech",
+      category: "Portfolio",
+      text: "A personal portfolio for a digital and development specialist, focused on services, experience, and contact.",
+      href: "https://www.dima-tech.com/",
+      tags: ["Portfolio", "Personal", "Web"],
+    },
+    5,
+  ),
 ];
 
 const shared = {
@@ -143,7 +179,12 @@ const ru = {
     keywords:
       "Vission Studio, Vission Studio сайт, веб студия, digital studio, разработка сайтов, создание сайтов, лендинг под ключ, сайт под ключ, Telegram Mini App, Telegram бот, UI UX дизайн, SEO, разработка сайта для бизнеса",
   },
-  navLinks: [["Портфолио", "#portfolio"], ["Услуги", "#services"], ["О студии", "#about"], ["Отзывы", "#testimonials"]],
+  navLinks: [
+    ["Портфолио", "#portfolio"],
+    ["Услуги", "#services"],
+    ["О студии", "#about"],
+    ["Отзывы", "#testimonials"],
+  ],
   header: {
     navLabel: "Основная навигация",
     homeLabel: "Vission Studio - на главную",
@@ -182,7 +223,12 @@ const ru = {
     title: "Услуги",
     text: "Всё, что нужно для присутствия в интернете - от идеи до запуска.",
   },
-  stats: [["50+", "проектов запущено"], ["7", "направлений работы"], ["1-3", "дня на простой сайт"], ["24/7", "на связи по проектам"]],
+  stats: [
+    ["50+", "проектов запущено"],
+    ["7", "направлений работы"],
+    ["1-3", "дня на простой сайт"],
+    ["24/7", "на связи по проектам"],
+  ],
   aboutTitle: "О студии",
   aboutCards: [
     ["Погружаемся в бизнес", "Перед разработкой разбираем задачу, аудиторию, продукт и путь клиента."],
@@ -198,7 +244,13 @@ const ru = {
     ["05", "Запуск", "Проверяем, публикуем, передаём доступы и остаёмся рядом после релиза."],
   ],
   requestBenefits: [],
-  goals: ["Запустить новый проект", "Обновить текущий сайт", "Получать больше заявок", "Автоматизировать продажи", "Улучшить UI/UX"],
+  goals: [
+    "Запустить новый проект",
+    "Обновить текущий сайт",
+    "Получать больше заявок",
+    "Автоматизировать продажи",
+    "Улучшить UI/UX",
+  ],
   needs: ["Сайт / лендинг", "Telegram Mini App", "Telegram-бот", "UI/UX-дизайн", "SEO / реклама", "Под ключ"],
   budgets: ["До $500", "$500 – $1 000", "$1 000 – $2 500", "$2 500+", "Обсудим"],
   request: {
@@ -214,7 +266,7 @@ const ru = {
     lastNameLabel: "Фамилия",
     lastNamePlaceholder: "Иванов",
     contactLabel: "Telegram / телефон / имейл",
-    contactPlaceholder: "@username, +7... или ...@gmail.com",
+    contactPlaceholder: "@username, +7... или name@gmail.com",
     descriptionLabel: "О проекте",
     descriptionPlaceholder: "Расскажите о задаче...",
     submit: "Отправить заявку",
@@ -223,8 +275,14 @@ const ru = {
     errorMessage: "Не удалось отправить заявку.",
   },
   toast: {
-    success: { title: "Заявка отправлена", defaultMessage: "Спасибо. Скоро свяжемся с вами." },
-    error: { title: "Не удалось отправить", defaultMessage: "Проверьте данные или попробуйте позже." },
+    success: {
+      title: "Заявка отправлена",
+      defaultMessage: "Спасибо. Скоро свяжемся с вами.",
+    },
+    error: {
+      title: "Не удалось отправить",
+      defaultMessage: "Проверьте данные или попробуйте позже.",
+    },
     closeLabel: "Закрыть уведомление",
   },
   testimonials: {
@@ -255,7 +313,12 @@ const en = {
     keywords:
       "Vission Studio, web studio, website development, landing page, Telegram Mini App, Telegram bot, UI UX design, SEO, digital studio, business website",
   },
-  navLinks: [["Portfolio", "#portfolio"], ["Services", "#services"], ["About", "#about"], ["Reviews", "#testimonials"]],
+  navLinks: [
+    ["Portfolio", "#portfolio"],
+    ["Services", "#services"],
+    ["About", "#about"],
+    ["Reviews", "#testimonials"],
+  ],
   header: {
     navLabel: "Main navigation",
     homeLabel: "Vission Studio - home",
@@ -294,7 +357,12 @@ const en = {
     title: "Services",
     text: "Everything you need for a strong online presence - from idea to launch.",
   },
-  stats: [["50+", "projects launched"], ["7", "service areas"], ["1-3", "days for a simple site"], ["24/7", "project communication"]],
+  stats: [
+    ["50+", "projects launched"],
+    ["7", "service areas"],
+    ["1-3", "days for a simple site"],
+    ["24/7", "project communication"],
+  ],
   aboutTitle: "About",
   aboutCards: [
     ["We study the business", "Before development, we clarify the task, audience, product and customer journey."],
@@ -310,7 +378,13 @@ const en = {
     ["05", "Launch", "We test, publish, hand over access and stay close after release."],
   ],
   requestBenefits: [],
-  goals: ["Launch a new project", "Update an existing website", "Get more leads", "Automate sales", "Improve UI/UX"],
+  goals: [
+    "Launch a new project",
+    "Update an existing website",
+    "Get more leads",
+    "Automate sales",
+    "Improve UI/UX",
+  ],
   needs: ["Website / landing page", "Telegram Mini App", "Telegram bot", "UI/UX design", "SEO / ads", "Full package"],
   budgets: ["Up to €500", "€500 – €1 000", "€1 000 – €2 500", "€2 500+", "Let's discuss"],
   request: {
@@ -322,11 +396,11 @@ const en = {
     needLabel: "What do you need?",
     budgetLabel: "Budget",
     firstNameLabel: "First name",
-    firstNamePlaceholder: "Ivan",
+    firstNamePlaceholder: "John",
     lastNameLabel: "Last name",
-    lastNamePlaceholder: "Ivanov",
+    lastNamePlaceholder: "Smith",
     contactLabel: "Telegram / phone / email",
-    contactPlaceholder: "@username, +7... or ...@gmail.com",
+    contactPlaceholder: "@username, +31... or name@gmail.com",
     descriptionLabel: "About the project",
     descriptionPlaceholder: "Tell us what you want to build...",
     submit: "Send request",
@@ -335,8 +409,14 @@ const en = {
     errorMessage: "Could not send the request.",
   },
   toast: {
-    success: { title: "Request sent", defaultMessage: "Thank you. We will contact you soon." },
-    error: { title: "Could not send", defaultMessage: "Check the details or try again later." },
+    success: {
+      title: "Request sent",
+      defaultMessage: "Thank you. We will contact you soon.",
+    },
+    error: {
+      title: "Could not send",
+      defaultMessage: "Check the details or try again later.",
+    },
     closeLabel: "Close notification",
   },
   testimonials: {
@@ -356,7 +436,10 @@ const en = {
   },
 };
 
-export const siteDataByLocale = { ru, en };
+export const siteDataByLocale = {
+  ru,
+  en,
+};
 
 export const getLocaleFromPath = (pathname = window.location.pathname) =>
   pathname.replace(/\/+$/, "") === "/en" || pathname.startsWith("/en/") ? "en" : "ru";
