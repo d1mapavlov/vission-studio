@@ -34,7 +34,7 @@ export default function Header() {
           ))}
         </nav>
         <a className="header-cta" href={telegramLink} target="_blank" rel="noreferrer">
-          Получить консультациюi
+          Получить консультацию
         </a>
         <button
           className="menu-button"
