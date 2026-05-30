@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
-import { reviews } from "../../data/siteData";
 import Reveal from "../ui/Reveal";
 
-export default function Testimonials() {
+export default function Testimonials({ data }) {
+  const { reviews, testimonials } = data;
   const [active, setActive] = useState(0);
   const [zoom, setZoom] = useState(null);
 
@@ -30,14 +30,14 @@ export default function Testimonials() {
     <section id="testimonials" className="testimonials">
       <div className="container">
         <Reveal className="reviews-heading">
-          <p className="mono eyebrow">Отзывы</p>
-          <h2>Что говорят клиенты</h2>
+          <p className="mono eyebrow">{testimonials.eyebrow}</p>
+          <h2>{testimonials.title}</h2>
         </Reveal>
         <div className="reviews-stage">
-          <button className="review-arrow left" aria-label="Предыдущий отзыв" onClick={prev}>
+          <button className="review-arrow left" aria-label={testimonials.prevLabel} onClick={prev}>
             ‹
           </button>
-          <button className="review-arrow right" aria-label="Следующий отзыв" onClick={next}>
+          <button className="review-arrow right" aria-label={testimonials.nextLabel} onClick={next}>
             ›
           </button>
           <div className="review-space">
@@ -51,7 +51,7 @@ export default function Testimonials() {
                 }}
                 key={src}
                 onClick={() => (index === active ? setZoom(src) : setActive(index))}
-                aria-label={`Отзыв клиента ${index + 1}`}
+                aria-label={`${testimonials.reviewLabel} ${index + 1}`}
               >
                 <img
                   className="review-blur"
@@ -65,7 +65,7 @@ export default function Testimonials() {
                 <img
                   className="review-main"
                   src={src}
-                  alt={`Отзыв клиента ${index + 1}`}
+                  alt={`${testimonials.reviewLabel} ${index + 1}`}
                   draggable="false"
                   loading={index === active ? "eager" : "lazy"}
                   fetchPriority={index === active ? "high" : "low"}
@@ -75,12 +75,12 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
-        <div className="review-dots" aria-label="Выбор отзыва">
+        <div className="review-dots" aria-label={testimonials.dotsLabel}>
           {reviews.map((_, index) => (
             <button
               key={index}
               className={index === active ? "is-active" : ""}
-              aria-label={`Перейти к отзыву ${index + 1}`}
+              aria-label={`${testimonials.dotLabel} ${index + 1}`}
               onClick={() => setActive(index)}
             />
           ))}
@@ -92,8 +92,8 @@ export default function Testimonials() {
         </div> */}
       </div>
       {zoom && (
-        <button className="review-modal" onClick={() => setZoom(null)} aria-label="Закрыть отзыв">
-          <img src={zoom} alt="Увеличенный отзыв" loading="eager" decoding="async" />
+        <button className="review-modal" onClick={() => setZoom(null)} aria-label={testimonials.closeLabel}>
+          <img src={zoom} alt={testimonials.zoomAlt} loading="eager" decoding="async" />
         </button>
       )}
     </section>

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { budgets, goals, needs, requestBenefits, workSteps } from "../../data/siteData";
 import ArrowRight from "../ui/ArrowRight";
 import ChipGroup from "../ui/ChipGroup";
 import FormToast from "../ui/FormToast";
@@ -13,7 +12,8 @@ function CheckIcon() {
   );
 }
 
-export default function ProcessAndRequest() {
+export default function ProcessAndRequest({ data }) {
+  const { budgets, goals, needs, request, requestBenefits, toast, workSteps } = data;
   const [goal, setGoal] = useState(goals[0]);
   const [need, setNeed] = useState(needs[0]);
   const [budget, setBudget] = useState(budgets[1]);
@@ -71,17 +71,18 @@ export default function ProcessAndRequest() {
           goal,
           need,
           budget,
+          language: data.locale.toUpperCase(),
           ...form,
         }),
       });
-      const data = await response.json();
+      const responseData = await response.json();
 
-      if (!response.ok || !data.ok) {
-        throw new Error(data.message || "Не удалось отправить заявку.");
+      if (!response.ok || !responseData.ok) {
+        throw new Error(responseData.message || request.errorMessage);
       }
 
       setStatus("success");
-      setMessage("Заявка отправлена. Скоро свяжемся с вами.");
+      setMessage(request.successMessage);
       setForm({ firstName: "", lastName: "", contact: "", description: "" });
       window.setTimeout(() => {
         setStatus("idle");
@@ -89,7 +90,7 @@ export default function ProcessAndRequest() {
       }, 4500);
     } catch (error) {
       setStatus("error");
-      setMessage(error.message || "Не удалось отправить заявку.");
+      setMessage(error.message || request.errorMessage);
       window.setTimeout(() => {
         setStatus("idle");
         setMessage("");
@@ -103,8 +104,8 @@ export default function ProcessAndRequest() {
         <div className="process-copy">
           <div className="process-heading">
             <Reveal>
-              <p className="mono eyebrow">Процесс</p>
-              <h2>Как мы работаем</h2>
+              <p className="mono eyebrow">{request.processEyebrow}</p>
+              <h2>{request.processTitle}</h2>
             </Reveal>
           </div>
           <div className="step-list">
@@ -125,49 +126,57 @@ export default function ProcessAndRequest() {
             onSubmit={submitLead}
           >
             <div className="request-form-head">
-              <p className="mono eyebrow">Заявка</p>
-              <h2>Расскажите о проекте</h2>
-              
-                
+              <p className="mono eyebrow">{request.formEyebrow}</p>
+              <h2>{request.formTitle}</h2>
+              {requestBenefits.length > 0 && (
+                <div className="request-benefits">
+                  {requestBenefits.map((benefit) => (
+                    <span key={benefit}>
+                      <CheckIcon />
+                      {benefit}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <div>
-              <label className="mono">Цель</label>
+              <label className="mono">{request.goalLabel}</label>
               <ChipGroup items={goals} value={goal} onChange={setGoal} />
             </div>
             <div id="request-needs" className="request-needs">
-              <label className="mono">Что нужно?</label>
+              <label className="mono">{request.needLabel}</label>
               <ChipGroup items={needs} value={need} onChange={setNeed} highlightValue={highlightNeed} />
             </div>
             <div>
-              <label className="mono">Бюджет</label>
+              <label className="mono">{request.budgetLabel}</label>
               <ChipGroup items={budgets} value={budget} onChange={setBudget} />
             </div>
             <div className="form-grid">
               <label>
-                <span className="mono">Имя</span>
-                <input required placeholder="Иван" value={form.firstName} onChange={updateField("firstName")} />
+                <span className="mono">{request.firstNameLabel}</span>
+                <input required placeholder={request.firstNamePlaceholder} value={form.firstName} onChange={updateField("firstName")} />
               </label>
               <label>
-                <span className="mono">Фамилия</span>
-                <input required placeholder="Иванов" value={form.lastName} onChange={updateField("lastName")} />
+                <span className="mono">{request.lastNameLabel}</span>
+                <input required placeholder={request.lastNamePlaceholder} value={form.lastName} onChange={updateField("lastName")} />
               </label>
             </div>
             <label>
-              <span className="mono">Telegram / телефон</span>
-              <input required placeholder="@username или +7..." value={form.contact} onChange={updateField("contact")} />
+              <span className="mono">{request.contactLabel}</span>
+              <input required placeholder={request.contactPlaceholder} value={form.contact} onChange={updateField("contact")} />
             </label>
             <label>
-              <span className="mono">О проекте</span>
+              <span className="mono">{request.descriptionLabel}</span>
               <textarea
                 required
                 rows="3"
-                placeholder="Расскажите о задаче..."
+                placeholder={request.descriptionPlaceholder}
                 value={form.description}
                 onChange={updateField("description")}
               />
             </label>
             <button className="submit-button" type="submit" disabled={status === "loading"}>
-              <span>{status === "loading" ? "Отправляем..." : "Отправить заявку"}</span>
+              <span>{status === "loading" ? request.loading : request.submit}</span>
               <ArrowRight />
             </button>
           </form>
@@ -176,6 +185,7 @@ export default function ProcessAndRequest() {
       <FormToast
         status={status}
         message={message}
+        copy={toast}
         onClose={() => {
           setStatus("idle");
           setMessage("");

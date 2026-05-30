@@ -72,6 +72,7 @@ function formatLeadMessage(lead) {
   return [
     "🟢 <b>Новая заявка · Vission Studio</b>",
     `🕒 ${escapeHtml(submittedAt)}`,
+    `🌐 Язык: <b>${escapeHtml(lead.language || "RU")}</b>`,
     "",
     "🎯 <b>Проект</b>",
     `├ Цель: <b>${escapeHtml(lead.goal)}</b>`,
