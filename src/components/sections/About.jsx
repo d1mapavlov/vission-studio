@@ -1,13 +1,14 @@
 import React from "react";
-import { aboutCards, stats } from "../../data/siteData";
 import Reveal from "../ui/Reveal";
 
-export default function About() {
+export default function About({ data }) {
+  const { aboutCards, aboutTitle, stats } = data;
+
   return (
     <section id="about" className="about">
       <div className="container section-block">
         <Reveal>
-          <h2 className="mega-title">О студии</h2>
+          <h2 className="mega-title">{aboutTitle}</h2>
         </Reveal>
         <Reveal className="stats-grid">
           {stats.map(([value, label]) => (

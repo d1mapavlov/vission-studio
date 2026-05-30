@@ -1,10 +1,11 @@
 import React from "react";
-import { brand, telegramLink } from "../../data/siteData";
 import ArrowRight from "../ui/ArrowRight";
 
-export default function Hero() {
+export default function Hero({ data }) {
+  const { brand, hero, telegramLink } = data;
+
   return (
-    <section id="top" className="hero" aria-label="Главный экран">
+    <section id="top" className="hero" aria-label={hero.ariaLabel}>
       <div className="hero-shade" />
       <div className="hero-gradient-y" />
       <div className="hero-gradient-x" />
@@ -21,9 +22,7 @@ export default function Hero() {
               fetchPriority="high"
               decoding="async"
             />
-            <span className="sr-only">
-              Vission Studio - разработка сайтов, Telegram Mini Apps, Telegram-ботов и UI/UX-дизайна
-            </span>
+            <span className="sr-only">{hero.srTitle}</span>
           </h1>
         </div>
         <div className="hero-title-wrap second">
@@ -33,15 +32,16 @@ export default function Hero() {
         </div>
         <div className="hero-bottom">
           <p>
-            Сайты, Telegram Mini Apps
-            <br />и боты под ключ.
+            {hero.text[0]}
+            <br />
+            {hero.text[1]}
           </p>
           <div className="hero-actions">
             <a className="button light" href={telegramLink} target="_blank" rel="noreferrer">
-              Обсудить проект <ArrowRight />
+              {hero.primaryCta} <ArrowRight />
             </a>
             <a className="button ghost" href="#portfolio">
-              Портфолио
+              {hero.secondaryCta}
             </a>
           </div>
         </div>

@@ -1,20 +1,9 @@
 import React from "react";
 
-const toastCopy = {
-  success: {
-    title: "Заявка отправлена",
-    defaultMessage: "Спасибо. Скоро свяжемся с вами.",
-  },
-  error: {
-    title: "Не удалось отправить",
-    defaultMessage: "Проверьте данные или попробуйте позже.",
-  },
-};
-
-export default function FormToast({ status, message, onClose }) {
+export default function FormToast({ status, message, copy, onClose }) {
   if (status !== "success" && status !== "error") return null;
 
-  const copy = toastCopy[status];
+  const currentCopy = copy[status];
 
   return (
     <div className={`form-toast ${status}`} role="status" aria-live="polite">
@@ -22,10 +11,10 @@ export default function FormToast({ status, message, onClose }) {
         {status === "success" ? "✓" : "!"}
       </div>
       <div className="form-toast-content">
-        <strong>{copy.title}</strong>
-        <span>{message || copy.defaultMessage}</span>
+        <strong>{currentCopy.title}</strong>
+        <span>{message || currentCopy.defaultMessage}</span>
       </div>
-      <button type="button" onClick={onClose} aria-label="Закрыть уведомление">
+      <button type="button" onClick={onClose} aria-label={copy.closeLabel}>
         ×
       </button>
     </div>
