@@ -9,7 +9,7 @@ import Portfolio from "./components/sections/Portfolio";
 import ProcessAndRequest from "./components/sections/ProcessAndRequest";
 import Services from "./components/sections/Services";
 import Testimonials from "./components/sections/Testimonials";
-import { criticalMedia } from "./data/siteData";
+import { criticalMedia, getLocaleFromPath, getSiteData } from "./data/siteData";
 import { useRevealOnScroll } from "./hooks/useRevealOnScroll";
 
 const contentSections = [
@@ -23,6 +23,8 @@ const contentSections = [
 
 export default function App() {
   useRevealOnScroll();
+  const locale = getLocaleFromPath();
+  const data = getSiteData(locale);
 
   useEffect(() => {
     let frame = 0;
@@ -52,16 +54,48 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const baseUrl = "https://vission-studio.vercel.app";
+    const canonical = `${baseUrl}${data.path}`;
+    const ruUrl = `${baseUrl}/`;
+    const enUrl = `${baseUrl}/en`;
+
+    document.documentElement.lang = data.locale;
+    document.title = data.seo.title;
+
+    const setMeta = (selector, value) => {
+      const node = document.head.querySelector(selector);
+      if (node) node.setAttribute("content", value);
+    };
+
+    const setLink = (selector, href) => {
+      const node = document.head.querySelector(selector);
+      if (node) node.setAttribute("href", href);
+    };
+
+    setMeta('meta[name="description"]', data.seo.description);
+    setMeta('meta[name="keywords"]', data.seo.keywords);
+    setMeta('meta[property="og:url"]', canonical);
+    setMeta('meta[property="og:title"]', data.seo.title);
+    setMeta('meta[property="og:description"]', data.seo.description);
+    setMeta('meta[name="twitter:title"]', data.seo.title);
+    setMeta('meta[name="twitter:description"]', data.seo.description);
+    setLink('link[rel="canonical"]', canonical);
+    setLink('link[rel="alternate"][hreflang="ru"]', ruUrl);
+    setLink('link[rel="alternate"][hreflang="en"]', enUrl);
+    setLink('link[rel="alternate"][hreflang="x-default"]', ruUrl);
+  }, [data]);
+
   return (
     <>
       <SitePreloader media={criticalMedia} />
       <CustomCursor />
-      <Header />
+      <Header data={data} />
       <main className="site-main">
-        <Hero />
+        <Hero data={data} />
         <div className="site-content">
           {contentSections.map((Section) => (
-            <Section key={Section.name} />
+            <Section key={Section.name} data={data} />
           ))}
         </div>
       </main>

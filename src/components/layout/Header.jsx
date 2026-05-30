@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { brand, navLinks, telegramLink } from "../../data/siteData";
 
-export default function Header() {
+export default function Header({ data }) {
+  const { brand, header, navLinks, telegramLink } = data;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const scrolledRef = useRef(false);
@@ -23,10 +23,10 @@ export default function Header() {
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "is-open" : ""}`}>
       <div className="container header-inner">
-        <a className="logo" href="#top" aria-label={`${brand.name} - на главную`}>
+        <a className="logo" href="#top" aria-label={header.homeLabel}>
           {brand.name}
         </a>
-        <nav className="desktop-nav" aria-label="Основная навигация">
+        <nav className="desktop-nav" aria-label={header.navLabel}>
           {navLinks.map(([label, href]) => (
             <a key={label} href={href}>
               {label}
@@ -34,11 +34,11 @@ export default function Header() {
           ))}
         </nav>
         <a className="header-cta" href={telegramLink} target="_blank" rel="noreferrer">
-          Получить консультацию
+          {header.cta}
         </a>
         <button
           className="menu-button"
-          aria-label="Открыть меню"
+          aria-label={header.menuLabel}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
@@ -54,7 +54,7 @@ export default function Header() {
           </a>
         ))}
         <a href={telegramLink} target="_blank" rel="noreferrer">
-          Получить консультацию
+          {header.cta}
         </a>
       </div>
     </header>

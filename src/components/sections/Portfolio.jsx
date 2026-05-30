@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { portfolioModalProjects, projects } from "../../data/siteData";
 import ArrowRight from "../ui/ArrowRight";
 import Reveal from "../ui/Reveal";
 
-function ProjectCardBody({ project, priority = false }) {
+function ProjectCardBody({ project, labels, priority = false }) {
   return (
     <>
       <div className="project-media" aria-hidden="true">
@@ -23,7 +22,7 @@ function ProjectCardBody({ project, priority = false }) {
         target="_blank"
         rel="noreferrer"
         className="project-open"
-        aria-label={`Открыть проект ${project.title}`}
+        aria-label={`${labels.openProjectLabel} ${project.title}`}
       >
         <ArrowRight up />
       </a>
@@ -34,14 +33,14 @@ function ProjectCardBody({ project, priority = false }) {
         {(project.tags?.length > 0 || project.metrics?.length > 0) && (
           <div className="project-extra">
             {project.tags?.length > 0 && (
-              <div className="project-tags" aria-label="Технологии и акценты">
+              <div className="project-tags" aria-label={labels.tagsLabel}>
                 {project.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
             )}
             {project.metrics?.length > 0 && (
-              <div className="project-metrics" aria-label="Ключевые показатели">
+              <div className="project-metrics" aria-label={labels.metricsLabel}>
                 {project.metrics.map(([value, label]) => (
                   <span key={`${value}-${label}`}>
                     <strong>{value}</strong>
@@ -53,33 +52,34 @@ function ProjectCardBody({ project, priority = false }) {
           </div>
         )}
         <a href={project.href} target="_blank" rel="noreferrer" className="project-link">
-          Смотреть проект <ArrowRight up />
+          {labels.projectLink} <ArrowRight up />
         </a>
       </div>
     </>
   );
 }
 
-function ProjectCard({ project, index, animated = true, className = "" }) {
+function ProjectCard({ project, labels, index, animated = true, className = "" }) {
   const isModalCard = className.includes("--modal");
   const priority = !isModalCard && index < 4;
 
   if (!animated) {
     return (
       <article className={`project-card ${className}`} style={{ "--card-delay": `${index * 55}ms` }}>
-        <ProjectCardBody project={project} priority={priority} />
+        <ProjectCardBody project={project} labels={labels} priority={priority} />
       </article>
     );
   }
 
   return (
     <Reveal className={`project-card ${className}`} as="article" delay={index * 70}>
-      <ProjectCardBody project={project} priority={priority} />
+      <ProjectCardBody project={project} labels={labels} priority={priority} />
     </Reveal>
   );
 }
 
-export default function Portfolio() {
+export default function Portfolio({ data }) {
+  const { portfolio: labels, portfolioModalProjects, projects } = data;
   const [modalOpen, setModalOpen] = useState(false);
   const landingProjects = projects.slice(0, 4);
 
@@ -103,14 +103,14 @@ export default function Portfolio() {
   const modal = modalOpen
     ? createPortal(
         <div className="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title">
-          <button className="portfolio-modal-backdrop" type="button" aria-label="Закрыть окно" onClick={() => setModalOpen(false)} />
+          <button className="portfolio-modal-backdrop" type="button" aria-label={labels.closeLabel} onClick={() => setModalOpen(false)} />
           <div className="portfolio-modal-panel">
             <div className="portfolio-modal-head">
               <div>
-                <p className="mono eyebrow">Архив</p>
-                <h2 id="portfolio-modal-title">Все проекты</h2>
+                <p className="mono eyebrow">{labels.archiveEyebrow}</p>
+                <h2 id="portfolio-modal-title">{labels.modalTitle}</h2>
               </div>
-              <button className="portfolio-modal-close" type="button" onClick={() => setModalOpen(false)} aria-label="Закрыть окно">
+              <button className="portfolio-modal-close" type="button" onClick={() => setModalOpen(false)} aria-label={labels.closeLabel}>
                 <span />
                 <span />
               </button>
@@ -119,6 +119,7 @@ export default function Portfolio() {
               {portfolioModalProjects.map((project, index) => (
                 <ProjectCard
                   project={project}
+                  labels={labels}
                   index={index}
                   animated={false}
                   className="project-card--modal"
@@ -137,16 +138,16 @@ export default function Portfolio() {
       <section id="portfolio" className="portfolio">
         <div className="container section-block">
           <Reveal>
-            <h2 className="mega-title">Портфолио</h2>
+            <h2 className="mega-title">{labels.title}</h2>
           </Reveal>
           <div className="portfolio-grid">
             {landingProjects.map((project, index) => (
-              <ProjectCard project={project} index={index} key={`${project.title}-${index}`} />
+              <ProjectCard project={project} labels={labels} index={index} key={`${project.title}-${index}`} />
             ))}
           </div>
           <Reveal className="portfolio-actions">
             <button className="portfolio-more-button" type="button" onClick={() => setModalOpen(true)}>
-              Смотреть все проекты
+              {labels.moreButton}
               <span>{portfolioModalProjects.length}</span>
             </button>
           </Reveal>
